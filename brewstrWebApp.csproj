@@ -325,10 +325,10 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Login\failedLogin.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\GoogleForms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\GoogleForms\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
