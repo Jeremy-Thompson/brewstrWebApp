@@ -4,38 +4,39 @@
         color: #5a5656;
         line-height: 1.5em;
     }
-    .profile-sidebar
-    {
-        background-color:#6d6666;
+
+    .panel-body {
+        background: #FFCCFF;
     }
 </style>
 
 @model brewstrWebApp.Models.User
 
-
-<h4>Username: @Model.getUsername()</h4>
-<h4>Email:  @Model.getEmailAddress()</h4>
-<h4>Password: @Model.getPassword()</h4>
-<h4>Phone Number: @Model.getPhoneNumber()</h4>
-<h4>Id: @Model.getId()  </h4>
-
-
-<div class="container">
+<div class="jumbotron">
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img src="~/Images/headshot.png" class="img-responsive" alt="">
+                    <img src="~/Images/headshot.png" height="250" width="250" alt="" border="0">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        Marcus Doe
+                        @Model.getName()
                     </div>
                     <div class="profile-usertitle-job">
-                        Developer
+                        @Model.getEmailAddress()
+                    </div>
+                    <div class="profile-usertitle-job">
+                        @Model.getPassword()
+                    </div>
+                    <div class="profile-usertitle-job">
+                        @Model.getPhoneNumber()
+                        <div class="profile-usertitle-job">
+                            @Model.getId()
+                        </div>
                     </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
@@ -79,8 +80,9 @@
         </div>
         <div class="col-md-9">
             <div class="profile-content">
-                USER CONTENT**
+
             </div>
         </div>
     </div>
+</div>
 </div>
