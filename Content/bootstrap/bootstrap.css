@@ -1063,7 +1063,7 @@ pre code {
   }
   .col-sm-offset-11 {
     margin-left: 91.66666666666666%;
-  }.p
+  }
 }
 
 @media (min-width: 992px) {
@@ -5418,7 +5418,6 @@ a.list-group-item:focus {
 .panel-group .panel + .panel {
   margin-top: 5px;
 }
-x5
 .panel-group .panel-heading {
   border-bottom: 0;
 }

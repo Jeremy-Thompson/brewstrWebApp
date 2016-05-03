@@ -3,13 +3,16 @@
         text-align: center;
     }
 </style>
+@{
+    ViewBag.Title = "Login";
+}
 <body>
     @Styles.Render("~/Content/Styles.css")
     @Scripts.Render("~/bundles/modernizr")
     <div id="login">
         <h1><strong>Welcome.</strong> Please login.</h1>
 
-        <form action="../Login/Index" method="post">
+        <form action="../Login/User_Login" method="post">
             <fieldset>
                 <p><input type="text" name="username" required value="Username" onblur="if(this.value=='')this.value='Username'" onfocus="if(this.value=='Username')this.value='' "></p>
                 <p><input type="password" name="password" required value="Password" onblur="if(this.value=='')this.value='Password'" onfocus="if(this.value=='Password')this.value='' "></p>
@@ -21,6 +24,6 @@
             </fieldset>
         </form>
         <p><span class="btn-round">Or</span></p>
-        <p><input type="button" value=" Create Account" id="createaccount" onclick="" /></p>
+        <p><input type="button" value=" Create Account" id="createaccount" onclick="location.href='/RegisterAccount/Index'" /></p>
     </div> <!-- end login -->
 </body>

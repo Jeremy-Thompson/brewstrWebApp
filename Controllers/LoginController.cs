@@ -15,7 +15,7 @@ namespace brewstrWebApp.Controllers
             return View("Index");
         }
         [HttpPost]
-        public ActionResult Index(string Username, string Password)
+        public ActionResult User_Login(string Username, string Password)
         {
             if(AuthenticateAccount(Username, Password))
             {
@@ -25,6 +25,12 @@ namespace brewstrWebApp.Controllers
             {
                 return View("~/Views/Login/failedLogin.cshtml");
             }
+        }
+        [HttpPost]
+        public ActionResult User_Register()
+        {
+            return View("~/Views/Login/FailedLogin.cshtml");
+
         }
         //[HttpPost]
         //public JsonResult MyAction(UserViewModel UserModel)
