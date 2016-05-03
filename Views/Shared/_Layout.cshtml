@@ -1,17 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     @Styles.Render("~/Content/bootstrap/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-static-top">
         <nav class="navbar navbar-inverse">
-            <div class="container">
+            <div class="container>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -44,19 +44,25 @@
                             </li>*@
                     </ul>
                 </div>
-            </div>
-        </nav>
 
+        </nav>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Brewstr Web Application</p>
-        </footer>
-    </div>
+        <div class=" container body-content">
+             @RenderBody()
+        </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap/bootstrap")
     @RenderSection("scripts", required: false)
+    <div class="panel-footer panel-custom">
+        <br /><br />&nbsp &nbsp &nbsp
+        <a href="https://twitter.com/thebrewstr"><i class="fa fa-twitter fa-2x" aria-hidden="true" style="color:white"></i></a> &nbsp &nbsp &nbsp
+        <a href="https://www.facebook.com/brewstr/"><i class="fa fa-facebook fa-2x" style="color:white"></i></a>    &nbsp &nbsp &nbsp
+        <a href="https://www.instagram.com/thebrewstr/"><i class="fa fa-instagram fa-2x" style="color:white"></i></a>    &nbsp &nbsp &nbsp
+        <br><br>
+        <font color="white">#TheBrewstr</font>
+        <br />  
+        <br>
+    </div>
 </body>
 </html>
