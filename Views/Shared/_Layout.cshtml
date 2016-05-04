@@ -12,39 +12,29 @@
     <div class="navbar navbar-static-top">
         <nav class="navbar navbar-inverse">
             <div class="container>
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" rel="home" href="Home" title="Logo">
-                        <img style="max-width:100px; margin-top: -7px;"
-                             src="~/Images/brewstr_logo_white.png">
-                    </a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("About", "Index", "About", new { area = "" }, null)</li>
+                <div class=" navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="Home" title="Logo">
+                    <img style="max-width:100px; margin-top: -7px;"
+                         src="~/Images/brewstr_logo_white.png">
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("About", "Index", "About", new { area = "" }, null)</li>
 
-                        @*<li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                              <ul class="dropdown-menu" >
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                              </ul>
-                            </li>*@
-                    </ul>
-                </div>
-
+                    <li class="register">
+                        <a href="#myModal" class="dialog-toggle" data-toggle="modal" role="button" data-target="#myModal">Register</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </div>
         <div class=" container body-content">
@@ -63,6 +53,34 @@
         <font color="white">#TheBrewstr</font>
         <br />  
         <br>
+    </div>
+
+    @Styles.Render("~/Content/Styles.css")
+    <div id="myModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Register Account</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="register">
+                        <form action="../RegisterAccount/User_Register" method="post">
+                            <fieldset>
+                                <p><input type="text" name="username" required value="Username" onblur="if(this.value=='')this.value='Username'" onfocus="if(this.value=='Username')this.value='' "></p>
+                                <p><input type="password" name="password" required value="Password" onblur="if(this.value=='')this.value='Password'" onfocus="if(this.value=='Password')this.value='' "></p>
+                                <p><input type="text" name="email" required value="Email Address" onblur="if(this.value=='')this.value='Email Address'" onfocus="if(this.value=='Email Address')this.value='' "></p>
+                                <p><input type="text" name="phone" required value="Phone Number" onblur="if(this.value=='')this.value='Phone Number'" onfocus="if(this.value=='Phone Number')this.value='' "></p>
+                                <p><input type="submit" value="Register" /></p>
+                                <script language="javascript">
+                                </script>
+                            </fieldset>
+                        </form>
+                    </div> <!-- end login -->
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

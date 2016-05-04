@@ -18,7 +18,7 @@ namespace brewstrWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult User_Login(string username, string password, string email, string phone)
+        public ActionResult User_Register(string username, string password, string email, string phone)
         {
             if (AuthenticateAccount(username, password, email, phone))
             {
@@ -60,7 +60,7 @@ namespace brewstrWebApp.Controllers
                 // Insert new user information into table
                 // TODO: How to get user id without using a third database call
                 command.CommandText = "INSERT INTO CFG_USER [(username [, phone_number [, email_address [, password]]])] VALUES (" + username + " [, " + phone + "[," + email + "[, " + password + "]]])";
-                command.ExecuteNonQuery();
+                int rows = command.ExecuteNonQuery();
                 command.Dispose();
                 connection.Close();
             }
@@ -72,7 +72,6 @@ namespace brewstrWebApp.Controllers
 
             TempData["username"] = username;
             TempData["password"] = password;
-            TempData["id"] = 1;
             TempData["phone_number"] = phone;
             TempData["email_address"] = email;
             return true;
