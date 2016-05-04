@@ -1,7 +1,27 @@
-﻿@Styles.Render("~/Content/bootstrap/bootstrap.css")
-@Scripts.Render("~/bundles/modernizr")
+﻿<style type="text/css">
+    body {
+        text-align: center;
+    }
+</style>
 @{
     ViewBag.Title = "Register";
 }
-
-<h2>RegisterAccount</h2>
+<body>
+    @Styles.Render("~/Content/bootstrap/bootstrap.css")
+    @Styles.Render("~/Content/Styles.css")
+    @Scripts.Render("~/bundles/modernizr")
+    <div id="login">
+        <h2>RegisterAccount</h2>
+        <form action="../RegisterAccount/User_Register" method="post">
+            <fieldset>
+                <p><input type="text" name="username" required value="Username" onblur="if(this.value=='')this.value='Username'" onfocus="if(this.value=='Username')this.value='' "></p>
+                <p><input type="password" name="password" required value="Password" onblur="if(this.value=='')this.value='Password'" onfocus="if(this.value=='Password')this.value='' "></p>
+                <p><input type="text" name="email" required value="Email Address" onblur="if(this.value=='')this.value='Email Address'" onfocus="if(this.value=='Email Address')this.value='' "></p>
+                <p><input type="text" name="phone" required value="Phone Number" onblur="if(this.value=='')this.value='Phone Number'" onfocus="if(this.value=='Phone Number')this.value='' "></p>
+                <p><input type="submit" value="Register"/></p>
+                <script language="javascript">
+                </script>
+            </fieldset>
+        </form>
+    </div> <!-- end login -->
+</body>
