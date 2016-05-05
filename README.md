@@ -12,4 +12,4 @@ Twitter Bootstrap V3.0.0
 
 
 Author: Jeremy Thompson
-Copywrite: Brewstr Technologies
+Copyright: Brewstr Technologies
