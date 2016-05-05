@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
+using System.Data.Sql;
 
 namespace brewstrWebApp.Controllers
 {
@@ -26,22 +27,28 @@ namespace brewstrWebApp.Controllers
             }
             else
             {
-                return View("~/Views//failedRegistration.cshtml");
+                return View("~/Views/RegisterAccount/failedRegistration.cshtml");
             }
         }
 
         public bool AuthenticateAccount(string username, string password, string email, string phone)
         {
-            string connectionString = null;
-
             // The register fields must contain something, otherwise no need to open database
             if (password == null || username == null || email == null || phone == null){
                 // TODO: set the error message to please enter required fields
                 return false;
             }
+            string r_username = null;
+            string r_password = null;
+            string r_phone_number = null;
+            string r_email_address = null;
+            int r_id = 0;
+
+            string connectionString = null;
             SqlConnection connection;
             SqlCommand command;
             string sql = null;
+            SqlDataReader dataReader;
             connectionString = "Data Source=(localdb)\\ProjectsV12;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False; Initial Catalog=Brewstr; User ID =admin;Password =admin";
             sql = "Select id,username,phone_number,email_address,password from CFG_USER where username = '" + username + "'";
             try
@@ -49,19 +56,42 @@ namespace brewstrWebApp.Controllers
                 connection = new SqlConnection(connectionString);
                 connection.Open();
                 command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                
+                //Check for a matching account in the database
+                while (dataReader.Read())
+                {
+                    r_id = dataReader.GetInt32(0);
+                    r_username = dataReader.GetString(1);
+                    r_phone_number = dataReader.GetString(2);
+                    r_email_address = dataReader.GetString(3);
+                    r_password = dataReader.GetString(4);
 
+                }
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
                 // if the username already exists
-                if (command.ExecuteReader() != null){
-                    //TODO error message is username already exists
-                    command.Dispose();
-                    connection.Close();
+                if((r_email_address != null))
+                {
                     return false;
                 }
                 // Insert new user information into table
                 // TODO: How to get user id without using a third database call
-                command.CommandText = "INSERT INTO CFG_USER [(username [, phone_number [, email_address [, password]]])] VALUES (" + username + " [, " + phone + "[," + email + "[, " + password + "]]])";
-                int rows = command.ExecuteNonQuery();
-                command.Dispose();
+                connection = new SqlConnection(connectionString);
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO CFG_USER (name,username,phone_number,email_address,password) VALUES (@name, @username, @phone_number, @email_address, @password)");
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Connection = connection;
+                cmd.Parameters.AddWithValue("@name", username);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@phone_number", phone);
+                cmd.Parameters.AddWithValue("@email_address", email);
+                cmd.Parameters.AddWithValue("@password", password);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
                 connection.Close();
             }
             catch (Exception ex)
@@ -69,7 +99,7 @@ namespace brewstrWebApp.Controllers
                 Console.Write("Can not open connection ! ");
                 Console.Write(ex.Message);
             }
-
+            TempData["id"] = 7;
             TempData["username"] = username;
             TempData["password"] = password;
             TempData["phone_number"] = phone;

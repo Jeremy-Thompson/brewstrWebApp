@@ -328,6 +328,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\GoogleForms\Index.cshtml" />
     <Content Include="Views\RegisterAccount\Index.cshtml" />
+    <Content Include="Views\RegisterAccount\failedRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
