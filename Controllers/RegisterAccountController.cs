@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace brewstrWebApp.Controllers
 {
@@ -12,6 +14,7 @@ namespace brewstrWebApp.Controllers
     {
         //
         // GET: /RegisterAccount/
+        bool invalid = false;
 
         public ActionResult Index()
         {
@@ -19,14 +22,15 @@ namespace brewstrWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult User_Register(string username, string password, string email, string phone)
+        public ActionResult User_Register(string name, string username, string password, string email, string phone)
         {
+            
             string usernameTrim = username.Trim();
             string passwordTrim = password.Trim();
             string emailTrim = email.Trim();
             string phoneTrim = phone.Trim();
-            if ((InputValidation(usernameTrim, passwordTrim, emailTrim, phoneTrim) < 0) && 
-                InsertAccount(usernameTrim, passwordTrim, emailTrim, phoneTrim))
+                if ((InputValidation(usernameTrim, passwordTrim, emailTrim, phoneTrim) < 1) && 
+                InsertAccount(name, usernameTrim, passwordTrim, emailTrim, phoneTrim))
             {
                 return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
             }
@@ -36,7 +40,7 @@ namespace brewstrWebApp.Controllers
             }
         }
 
-        public bool InsertAccount(string username, string password, string email, string phone)
+        public bool InsertAccount(string name, string username, string password, string email, string phone)
         {
             // The register fields must contain something, otherwise no need to open database
             if (password == null || username == null || email == null || phone == null){
@@ -88,7 +92,7 @@ namespace brewstrWebApp.Controllers
                 SqlCommand cmd = new SqlCommand("INSERT INTO CFG_USER (name,username,phone_number,email_address,password) VALUES (@name, @username, @phone_number, @email_address, @password)");
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Connection = connection;
-                cmd.Parameters.AddWithValue("@name", username);
+                cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@phone_number", phone);
                 cmd.Parameters.AddWithValue("@email_address", email);
@@ -104,16 +108,16 @@ namespace brewstrWebApp.Controllers
                 Console.Write("Can not open connection ! ");
                 Console.Write(ex.Message);
             }
-            TempData["id"] = 7;
             TempData["username"] = username;
             TempData["password"] = password;
+            TempData["id"] = 1;
             TempData["phone_number"] = phone;
             TempData["email_address"] = email;
             return true;
         }
 
         int InputValidation(string username, string password, string email, string phone)
-        {
+            {
             /*
              * Message Flag Map
              * Bit 1: username is too long
@@ -121,6 +125,7 @@ namespace brewstrWebApp.Controllers
              * Bit 3: password is too short
              * Bit 4: phone number is too long
              * Bit 5: email is too long
+             * Bit 6: email is invalid
              */
             int messageFlag = 0;
             // The register fields must contain something, otherwise no need to open database
@@ -144,7 +149,61 @@ namespace brewstrWebApp.Controllers
             {
                 messageFlag += 16;
             }
+            if (!IsValidEmail(email))
+            {
+                messageFlag += 32;
+            }
             return messageFlag;
+        }
+
+        public bool IsValidEmail(string strIn)
+        {
+            invalid = false;
+            if (String.IsNullOrEmpty(strIn))
+                return false;
+
+            // Use IdnMapping class to convert Unicode domain names.
+            try
+            {
+                strIn = Regex.Replace(strIn, @"(@)(.+)$", this.DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+
+            if (invalid)
+                return false;
+
+            // Return true if strIn is in valid e-mail format.
+            try
+            {
+                return Regex.IsMatch(strIn,
+                      @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                      @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                      RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+        }
+        private string DomainMapper(Match match)
+        {
+            // IdnMapping class with default property values.
+            IdnMapping idn = new IdnMapping();
+
+            string domainName = match.Groups[2].Value;
+            try
+            {
+                domainName = idn.GetAscii(domainName);
+            }
+            catch (ArgumentException)
+            {
+                invalid = true;
+            }
+            return match.Groups[1].Value + domainName;
         }
     }
 }
