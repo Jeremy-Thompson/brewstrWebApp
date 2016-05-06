@@ -20,7 +20,12 @@ namespace brewstrWebApp.Controllers
         [HttpPost]
         public ActionResult User_Register(string username, string password, string email, string phone)
         {
-            if (AuthenticateAccount(username, password, email, phone))
+            string usernameTrim = username.Trim();
+            string passwordTrim = password.Trim();
+            string emailTrim = email.Trim();
+            string phoneTrim = phone.Trim();
+            if ((InputValidation(usernameTrim, passwordTrim, emailTrim, phoneTrim) < 0) && 
+                InsertAccount(usernameTrim, passwordTrim, emailTrim, phoneTrim))
             {
                 return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
             }
@@ -30,7 +35,7 @@ namespace brewstrWebApp.Controllers
             }
         }
 
-        public bool AuthenticateAccount(string username, string password, string email, string phone)
+        public bool InsertAccount(string username, string password, string email, string phone)
         {
             string connectionString = null;
 
@@ -75,6 +80,41 @@ namespace brewstrWebApp.Controllers
             TempData["phone_number"] = phone;
             TempData["email_address"] = email;
             return true;
+        }
+
+        int InputValidation(string username, string password, string email, string phone)
+        {
+            /*
+             * Message Flag Map
+             * Bit 1: username is too long
+             * Bit 2: password is too long
+             * Bit 3: password is too short
+             * Bit 4: phone number is too long
+             * Bit 5: email is too long
+             */
+            int messageFlag = 0;
+            // The register fields must contain something, otherwise no need to open database
+            if (username.Length > 100)
+            {
+                messageFlag += 1;
+            }
+            if (password.Length > 30)
+            {
+                messageFlag += 2;
+            }
+            if (password.Length < 5)
+            {
+                messageFlag += 4;
+            }
+            if (phone.Length > 16)
+            {
+                messageFlag += 8;
+            }
+            if (email.Length > 30)
+            {
+                messageFlag += 16;
+            }
+            return messageFlag;
         }
     }
 }
