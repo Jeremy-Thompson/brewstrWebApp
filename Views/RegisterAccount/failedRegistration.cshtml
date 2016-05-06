@@ -1,5 +1,20 @@
 ﻿@{
     ViewBag.Title = "failedRegistration";
 }
-
+@model brewstrWebApp.Models.RegistrationError
 <h2>failedRegistration</h2>
+
+<p>"username too long ="</p>
+<p>@Model.getUsernameTooLong()</p>
+<p>"password Too Long ="</p>
+<p>@Model.getPasswordTooLong()</p>
+<p>"password too short ="</p>
+<p>@Model.getPasswordTooShort()</p>
+<p>"email too long ="</p>
+<p>@Model.getEmailTooLong()</p>
+<p>"Phone Number too Long ="</p>
+<p>@Model.getPhoneTooLong()</p>
+<p>"Email Invalid ="</p>
+<p>@Model.getEmailInvalid()</p>
+<p>"Username Exists="</p>
+<p>@Model.getUsernameExists()</p>

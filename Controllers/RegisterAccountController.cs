@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Data.Sql;
-using System.Text.RegularExpressions;
 using System.Globalization;
+using brewstrWebApp.Models;
+using System.Text.RegularExpressions;
 
 namespace brewstrWebApp.Controllers
 {
@@ -15,6 +16,7 @@ namespace brewstrWebApp.Controllers
         //
         // GET: /RegisterAccount/
         bool invalid = false;
+        bool usernameExists = false;
 
         public ActionResult Index()
         {
@@ -29,14 +31,17 @@ namespace brewstrWebApp.Controllers
             string passwordTrim = password.Trim();
             string emailTrim = email.Trim();
             string phoneTrim = phone.Trim();
-                if ((InputValidation(usernameTrim, passwordTrim, emailTrim, phoneTrim) < 1) && 
-                InsertAccount(name, usernameTrim, passwordTrim, emailTrim, phoneTrim))
+            int errorMsg = InputValidation(usernameTrim, passwordTrim, emailTrim, phoneTrim);
+            bool insertAccount = InsertAccount(name, usernameTrim, passwordTrim, emailTrim, phoneTrim);
+
+            if ((errorMsg < 1) && insertAccount)
             {
                 return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
             }
             else
             {
-                return View("~/Views/RegisterAccount/failedRegistration.cshtml");
+                RegistrationError regErr = new RegistrationError(errorMsg, usernameExists);
+                return View("~/Views/RegisterAccount/failedRegistration.cshtml", regErr);
             }
         }
 
@@ -81,8 +86,9 @@ namespace brewstrWebApp.Controllers
                 command.Dispose();
                 connection.Close();
                 // if the username already exists
-                if((r_email_address != null))
+                if((r_username != null))
                 {
+                    usernameExists = true;
                     return false;
                 }
                 // Insert new user information into table
