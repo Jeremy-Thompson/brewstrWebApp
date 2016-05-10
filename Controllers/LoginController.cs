@@ -19,7 +19,7 @@ namespace brewstrWebApp.Controllers
         {
             if(AuthenticateAccount(Username, Password))
             {
-                return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
+                return Redirect("../User/Index"); 
             }
             else
             {

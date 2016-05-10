@@ -193,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\RegistrationError.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\User_Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -329,6 +330,7 @@
     <Content Include="Views\GoogleForms\Index.cshtml" />
     <Content Include="Views\RegisterAccount\Index.cshtml" />
     <Content Include="Views\RegisterAccount\failedRegistration.cshtml" />
+    <Content Include="Views\Shared\_userAuthenticated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
