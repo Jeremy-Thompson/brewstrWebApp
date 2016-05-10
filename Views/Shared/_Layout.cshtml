@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     @Styles.Render("~/Content/bootstrap/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Styles.css")
 </head>
 <body>
     <div class="navbar navbar-static-top">
@@ -31,9 +32,10 @@
                     <li>@Html.ActionLink("About", "Index", "About", new { area = "" }, null)</li>
 
                     <li class="register">
-                        <a href="#myModal" class="dialog-toggle" data-toggle="modal" role="button" data-target="#myModal">Register</a>
+                        <a href="#myModal" class="dialog-toggle" data-toggle="modal" role="button" data-target="#myModal" onfocus="blur()">Register</a>
                     </li>
                 </ul>
+
             </div>
         </nav>
     </div>
@@ -55,7 +57,6 @@
         <br>
     </div>
 
-    @Styles.Render("~/Content/Styles.css")
     <div id="myModal" class="modal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -68,7 +69,7 @@
                     <div id="register">
                         <form action="../RegisterAccount/User_Register" method="post">
                             <fieldset>
-                                <p><input type="text" name="name" required value="Name" onblur="if(this.value=='')this.value='name'" onfocus="if(this.value=='name')this.value='' "></p>
+                                <p><input type="text" name="name" required value="Name" onblur="if(this.value=='')this.value='Name'" onfocus="if(this.value=='Name')this.value='' "></p>
                                 <p><input type="text" name="username" required value="Username" onblur="if(this.value=='')this.value='Username'" onfocus="if(this.value=='Username')this.value='' "></p>
                                 <p><input type="password" name="password" required value="Password" onblur="if(this.value=='')this.value='Password'" onfocus="if(this.value=='Password')this.value='' "></p>
                                 <p><input type="text" name="email" required value="Email Address" onblur="if(this.value=='')this.value='Email Address'" onfocus="if(this.value=='Email Address')this.value='' "></p>
