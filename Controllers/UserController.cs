@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using brewstrWebApp.Models;
 using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace brewstrWebApp.Controllers
 {
@@ -19,10 +20,12 @@ namespace brewstrWebApp.Controllers
             int id = (int)TempData["id"];
             string phone_number = (string)TempData["phone_number"];
             string email_address = (string) TempData["email_address"];
-            User usr = new User(id, username, phone_number, email_address, password);  
+            bool isAdmin = username.Substring(0,1).Equals("j");
+            User usr = new User(id, username, phone_number, email_address, password, isAdmin);  
             getUserInfo(usr);
             return View(usr);
         }
+
         public void getUserInfo(User usr)
         {
             int r_Id = 0;

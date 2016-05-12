@@ -25,6 +25,16 @@
             text-transform: uppercase;
         }
 
+        #no-user {
+            display:block;
+        }
+        #user {
+            display:none;
+        }
+        #super-user {
+            display:none;
+        }
+
         /* ---------- LOGIN ---------- */
         #login {
             margin: 50px auto;

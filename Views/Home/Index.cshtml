@@ -5,119 +5,134 @@
         text-align: center;
     }
      @Styles.Render("~/Content/bootstrap/bootstrap.css")
+    @model brewstrWebApp.Models.User
 </style>
 @{
     ViewBag.Title = "Homepage";
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<style>
+<body>
+    <style>
         .carousel-inner > .item > img,
         .carousel-inner > .item > a > img {
             width: 70%;
             margin: auto;
         }
-</style>
-<div class="panel panel-default panel-full">
-    <div class="panel-">
-        <div id="myCarousel" class="carousel slide container-full" data-ride="carousel"|>
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
+    </style>
+    <div class="panel panel-default panel-full">
+        <div class="panel-">
+            <div id="myCarousel" class="carousel slide container-full" data-ride="carousel" |>
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active carousel-IMG">
-                    <img src="~/Images/Brewstr_Render.png">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active carousel-IMG">
+                        <img src="~/Images/Brewstr_Render.png">
+                    </div>
+                    <div class="item carousel-IMG ">
+                        <img src="~/Images/BIV_Photo.png">
+                    </div>
+                    <div class="item carousel-IMG">
+                        <img src="~/Images/Metro_Van_Photo.png">
+                    </div>
+
                 </div>
-                <div class="item carousel-IMG ">
-                    <img src="~/Images/BIV_Photo.png">
-                </div>
-                <div class="item carousel-IMG">
-                    <img src="~/Images/Metro_Van_Photo.png">
-                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <br> &nbsp  <br> &nbsp
+            <h3>BREWING HAS NEVER BEEN EASIER</h3>
+            <br> &nbsp
+            <p class="lead"> Introducing Canada's First Automated Homebrewing System</p>
+            <br> &nbsp
+
+            <p><a href='@Url.Action("Index", "GoogleForms")' class="btn btn-primary btn-lg">Sign Up &raquo;</a></p>
+            <br> &nbsp  <br> &nbsp  <br> &nbsp  <br> &nbsp
+        </div>
+    </div>
+    <div class="panel panel-default panel-full">
+        <div class="panel-body">
+            <h3>AUTOMATION + QUALITY</h3> <br />
+            <p>Brewstr aims to empower the world by reinventing the experience of crafting beer and cider at home. We are developing an <b>automated homebrewing <br /> system</b> that provides a creative outlet for craft enthusiasts to produce quality personalized beverages.</p>
+            <br> &nbsp  <br> &nbsp  <br> &nbsp  <br> &nbsp
+
+            <p>
+                <a href="http://www.vancitybuzz.com/2016/04/cheers-automatic-homebrew-machine-designed-sfu-students/">
+                    <img src="~/Images/vancity_buzz.png" alt="" border="0">
+                </a>
+                <a href="https://www.biv.com/article/2016/4/students-brew-new-spin-business-homemade-beer/">
+                    <img src="~/Images/business_in_vancouver.png" alt="" border="0">
+                </a>
+                <a href="http://vancouver.24hrs.ca/2016/04/17/sfu-students-developing-keurig-for-beer">
+                    <img src="~/Images/24hr_news.png" alt="" border="0">
+                </a>
+                <a href="http://www.metronews.ca/news/vancouver/2016/04/25/sfu-students-hopped-up-on-hopes-for-home-brewing-machine.html">
+                    <img src="~/Images/vancouver_metro.png" alt="" border="0">
+                </a>
+            </p>
+            <br> &nbsp  <br> &nbsp  <br> &nbsp  <br> &nbsp
+        </div>
+    </div>
+    <div class="panel panel-default panel-full">
+        <div class="panel-body">
+            <h2>TEAM</h2>
+            <br /> <br />
+
+            <p><b>Derek Muxworthy </b>- Mechatronics Systems Engineering student passionate about software & control systems design</p>
+            <br />
+            <p><b>Jeremy Thompson </b>- Tech-enthusiast pursuing Bachelor's in Mechatronics Systems Engineering</p>
+            <br />
+            <p><b>Jordan Sciberras </b>- Mechatronic Systems Engineering student with experience in project management</p>
+            <br />
+            <p><b>Karan Thakur </b>- BBA student with industry experience in start-up financing & private placements</p>
+            <br />
+            <p><b>Kavi Sekhon </b>- BBA student in Management Information Systems, Operations, Innovation, and pursuing a BTM Certificate</p>
+            <br />
+            <p><b>Ryan Lymburner </b>- Double degrees student pursuing a BBA & a Bachelor's in Mechatronics System Engineering</p>
+            <br /><br /><br /><br />
+
+        </div>
+    </div>
+    <div class="panel panel-default panel-full">
+        <div class="panel-body">
+            <div align="left">
+                <a class="twitter-timeline" href="https://twitter.com/thebrewstr" data-widget-id="725578744073584640">Tweets by thebrewstr</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default container-full">
+        <div class="panel-body">
+            <div align="left">
 
             </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        <br> &nbsp  <br> &nbsp
-        <h3>BREWING HAS NEVER BEEN EASIER</h3>
-        <br> &nbsp
-        <p class="lead"> Introducing Canada's First Automated Homebrewing System</p>
-        <br> &nbsp
-
-        <p><a href='@Url.Action("Index", "GoogleForms")' class="btn btn-primary btn-lg">Sign Up &raquo;</a></p>
-        <br> &nbsp  <br> &nbsp  <br> &nbsp  <br> &nbsp
-    </div>
-</div>
-<div class="panel panel-default panel-full">
-    <div class="panel-body">
-        <h3>AUTOMATION + QUALITY</h3> <br />
-        <p>Brewstr aims to empower the world by reinventing the experience of crafting beer and cider at home. We are developing an <b>automated homebrewing <br /> system</b> that provides a creative outlet for craft enthusiasts to produce quality personalized beverages.</p>
-        <br> &nbsp  <br> &nbsp  <br> &nbsp  <br> &nbsp
-
-        <p>
-            <a href="http://www.vancitybuzz.com/2016/04/cheers-automatic-homebrew-machine-designed-sfu-students/">
-                <img src="~/Images/vancity_buzz.png" alt="" border="0">
-            </a>
-            <a href="https://www.biv.com/article/2016/4/students-brew-new-spin-business-homemade-beer/">
-                <img src="~/Images/business_in_vancouver.png" alt="" border="0">
-            </a>
-            <a href="http://vancouver.24hrs.ca/2016/04/17/sfu-students-developing-keurig-for-beer">
-                <img src="~/Images/24hr_news.png" alt="" border="0">
-            </a>
-            <a href="http://www.metronews.ca/news/vancouver/2016/04/25/sfu-students-hopped-up-on-hopes-for-home-brewing-machine.html">
-                <img src="~/Images/vancouver_metro.png" alt="" border="0">
-            </a>
-        </p>
-        <br> &nbsp  <br> &nbsp  <br> &nbsp  <br> &nbsp
-    </div>
-</div>
-<div class="panel panel-default panel-full">
-    <div class="panel-body">
-        <h2>TEAM</h2>
-        <br /> <br />
-
-        <p><b>Derek Muxworthy </b>- Mechatronics Systems Engineering student passionate about software & control systems design</p>
-        <br />
-        <p><b>Jeremy Thompson </b>- Tech-enthusiast pursuing Bachelor's in Mechatronics Systems Engineering</p>
-        <br />
-        <p><b>Jordan Sciberras </b>- Mechatronic Systems Engineering student with experience in project management</p>
-        <br />
-        <p><b>Karan Thakur </b>- BBA student with industry experience in start-up financing & private placements</p>
-        <br />
-        <p><b>Kavi Sekhon </b>- BBA student in Management Information Systems, Operations, Innovation, and pursuing a BTM Certificate</p>
-        <br />
-        <p><b>Ryan Lymburner </b>- Double degrees student pursuing a BBA & a Bachelor's in Mechatronics System Engineering</p>
-        <br /><br /><br /><br />
-
-    </div>
-</div>
-<div class="panel panel-default panel-full">
-    <div class="panel-body">
-        <div align="left">
-            <a class="twitter-timeline" href="https://twitter.com/thebrewstr" data-widget-id="725578744073584640">Tweets by thebrewstr</a>
-            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
         </div>
     </div>
-</div>
-<div class="panel panel-default container-full">
-    <div class="panel-body">
-        <div align="left">
+    <script>
+        var model = @Html.Raw(Json.Encode(Model.getIsAdmin()));
+        if (model)
+        {
+            document.getElementById('no-user').style.display = "none";
+            document.getElementById('user').style.display = "block";
+        } else 
+        {
+            document.getElementById('no-user').style.display = "block";
+            document.getElementById('user').style.display = "none";
+        }
+    </script>
 
-        </div>
-    </div>
-</div>
-
+</body>
