@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace brewstrWebApp.Models
 {
     public class User
     {
-        private int _id;
-        private string _name;
-        private string _username;
-        private string _password;
-        private string _phone_number;
-        private string _email_address;
+        public int _id {get;set;}
+        [Display(Name="Name")]
+        [Required(ErrorMessage = "Please Enter your Name")]
+        public string _name { get; set; }
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Please Enter a Username")]
+        [StringLength(100)]
+        public string _username { get; set; }
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Please Enter a Password")]
+        [StringLength(15)]
+        public string _password { get; set; }
+        [Display(Name = "Email Address")]
+        [Required(ErrorMessage = "Please Enter a phone number")]
+        [StringLength(30)]
+        public string _phone_number { get; set; }
+        [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "Please Enter an email address")]
+        [StringLength(30)]
+        public string _email_address { get; set; }
         public bool _valid = false;
         private bool _isAdmin;
             

@@ -26,7 +26,6 @@ namespace brewstrWebApp.Controllers
         [HttpPost]
         public ActionResult User_Register(string name, string username, string password, string email, string phone)
         {
-            
             string usernameTrim = username.Trim();
             string passwordTrim = password.Trim();
             string emailTrim = email.Trim();
@@ -210,6 +209,21 @@ namespace brewstrWebApp.Controllers
                 invalid = true;
             }
             return match.Groups[1].Value + domainName;
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Models.User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            return Create();
         }
     }
 }
