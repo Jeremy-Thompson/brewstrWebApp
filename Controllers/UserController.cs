@@ -6,13 +6,14 @@ using System.Web.Mvc;
 using brewstrWebApp.Models;
 using System.Data.SqlClient;
 using System.Web.UI;
+using brewstrWebApp.Filters;
 
 namespace brewstrWebApp.Controllers
 {
     public class UserController : Controller
     {
         // GET: User
-            
+        [LoadUserLayout]
         public ActionResult Index()
         {
             string username = (string) TempData["username"];
@@ -23,7 +24,7 @@ namespace brewstrWebApp.Controllers
             bool isAdmin = username.Substring(0,1).Equals("j");
             User usr = new User(id, username, phone_number, email_address, password, isAdmin);  
             getUserInfo(usr);
-            return View(usr);
+            return View("~/Views/Home/Index.cshtml", usr);
         }
 
         public void getUserInfo(User usr)
