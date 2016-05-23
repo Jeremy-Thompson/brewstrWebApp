@@ -24,8 +24,16 @@ namespace brewstrWebApp.Controllers
             string email_address = (string) TempData["email_address"];
             bool isAdmin = username.Substring(0,1).Equals("j");
             User usr = new User(id, username, phone_number, email_address, password, isAdmin);
+            // This is used in the _viewStart to determine which layout to use
             HttpContext.Session["Logged On"] = "true";
             getUserInfo(usr);
+            return View("~/Views/Home/Index.cshtml", usr);
+        }
+
+        public ActionResult SignOut()
+        {
+            User usr = new User();
+            HttpContext.Session.Remove("Logged On");
             return View("~/Views/Home/Index.cshtml", usr);
         }
 
