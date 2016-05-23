@@ -1,3 +1,11 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sessionUser = System.Web.HttpContext.Current.Session.Keys.Count;
+    if (sessionUser > 0) 
+    { 
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";        
+     }
 }

@@ -13,6 +13,7 @@ namespace brewstrWebApp.Controllers
     public class UserController : Controller
     {
         // GET: User
+        // The LoadUserLayoutFilter changes the Layout file so as to swap the "register" and "login" options for a User dropdown option in the navbar
         [LoadUserLayout]
         public ActionResult Index()
         {
@@ -22,7 +23,8 @@ namespace brewstrWebApp.Controllers
             string phone_number = (string)TempData["phone_number"];
             string email_address = (string) TempData["email_address"];
             bool isAdmin = username.Substring(0,1).Equals("j");
-            User usr = new User(id, username, phone_number, email_address, password, isAdmin);  
+            User usr = new User(id, username, phone_number, email_address, password, isAdmin);
+            HttpContext.Session["Logged On"] = "true";
             getUserInfo(usr);
             return View("~/Views/Home/Index.cshtml", usr);
         }

@@ -122,17 +122,6 @@
             </div>
         </div>
     </div>
-    <script>
-        var model = @Html.Raw(Json.Encode(Model.getIsAdmin()));
-        if (model)
-        {
-            document.getElementById('no-user').style.display = "none";
-            document.getElementById('user').style.display = "block";
-        } else 
-        {
-            document.getElementById('no-user').style.display = "block";
-            document.getElementById('user').style.display = "none";
-        }
-    </script>
+
 
 </body>

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
 
+/*
+ * A filter used to change switch the avbar content when the user "logs in"
+ * To do this it changes the shared Layout file
+ */
 namespace brewstrWebApp.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
