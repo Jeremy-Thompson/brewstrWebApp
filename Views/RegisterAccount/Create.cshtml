@@ -1,0 +1,70 @@
+﻿@model brewstrWebApp.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div>
+        <fieldset>
+            <legend>User</legend>
+            <div class="editor-field">
+                @Html.LabelFor(model => model._password)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model._password)
+                @Html.ValidationMessageFor(model => model._password)
+            </div>
+            <div>
+                @Html.LabelFor(model => model._name)
+            </div>
+            <div>
+                @Html.EditorFor(model => model._name)
+                @Html.ValidationMessageFor(model => model._name)
+            </div>
+            <div>
+                @Html.LabelFor(model => model._username)
+            </div>
+            <div>
+                @Html.EditorFor(model => model._username)
+                @Html.ValidationMessageFor(model => model._username)
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model._email_address)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model._email_address)
+                @Html.ValidationMessageFor(model => model._email_address)
+            </div>
+            <div>
+                @Html.LabelFor(model => model._phone_number)
+            </div>
+            <div>
+                @Html.EditorFor(model => model._phone_number)
+                @Html.ValidationMessageFor(model => model._phone_number)
+            </div>
+            <div>
+                @Html.LabelFor(model => model._id)
+            </div>
+            <div>
+                @Html.EditorFor(model => model._id)
+                @Html.ValidationMessageFor(model => model._id)
+                <p>
+                    <input type="submit" value="Create" />
+                </p>
+</fieldset>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

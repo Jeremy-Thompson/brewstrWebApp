@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using brewstrWebApp.Models;
 
 namespace brewstrWebApp.Controllers
 {
@@ -11,8 +12,8 @@ namespace brewstrWebApp.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
+            User user = new User();
+            return View(user);
         }
 
         public ActionResult About()

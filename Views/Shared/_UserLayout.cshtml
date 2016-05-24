@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+@model brewstrWebApp.Models.User
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    @Styles.Render("~/Content/bootstrap/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Styles.css")
+
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+        <nav class="navbar navbar-inverse">
+            <div class="container>
+                <div class=" navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="Home" title="Logo">
+                    <img style="max-width:100px; margin-top: -7px;"
+                         src="~/Images/brewstr_logo_white.png">
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Login", "Index", "Login", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("About", "Index", "About", new { area = "" }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Account</b> <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu pull-left">
+                            <li>
+                                @Html.ActionLink("My Account", "Index", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("My Recipes", "Index", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Sign Out", "SignOut", "User")
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+        <div class=" container body-content">
+             @RenderBody()
+        </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap/bootstrap")
+    @RenderSection("scripts", required: false)
+    <div class="panel-footer panel-custom">
+        <br /><br />&nbsp &nbsp &nbsp
+        <a href="https://twitter.com/thebrewstr"><i class="fa fa-twitter fa-2x" aria-hidden="true" style="color:white"></i></a> &nbsp &nbsp &nbsp
+        <a href="https://www.facebook.com/brewstr/"><i class="fa fa-facebook fa-2x" style="color:white"></i></a>    &nbsp &nbsp &nbsp
+        <a href="https://www.instagram.com/thebrewstr/"><i class="fa fa-instagram fa-2x" style="color:white"></i></a>    &nbsp &nbsp &nbsp
+        <br><br>
+        <font color="white">#TheBrewstr</font>
+        <br />  
+        <br>
+    </div>
+</body>
+</html>

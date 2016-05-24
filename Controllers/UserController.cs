@@ -5,13 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using brewstrWebApp.Models;
 using System.Data.SqlClient;
+using System.Web.UI;
+using brewstrWebApp.Filters;
 
 namespace brewstrWebApp.Controllers
 {
     public class UserController : Controller
     {
         // GET: User
-            
+        // The LoadUserLayoutFilter changes the Layout file so as to swap the "register" and "login" options for a User dropdown option in the navbar
+        [LoadUserLayout]
         public ActionResult Index()
         {
             string username = (string) TempData["username"];
@@ -19,10 +22,21 @@ namespace brewstrWebApp.Controllers
             int id = (int)TempData["id"];
             string phone_number = (string)TempData["phone_number"];
             string email_address = (string) TempData["email_address"];
-            User usr = new User(id, username, phone_number, email_address, password);  
+            bool isAdmin = username.Substring(0,1).Equals("j");
+            User usr = new User(id, username, phone_number, email_address, password, isAdmin);
+            // This is used in the _viewStart to determine which layout to use
+            HttpContext.Session["Logged On"] = "true";
             getUserInfo(usr);
-            return View(usr);
+            return View("~/Views/Home/Index.cshtml", usr);
         }
+
+        public ActionResult SignOut()
+        {
+            User usr = new User();
+            HttpContext.Session.Remove("Logged On");
+            return View("~/Views/Home/Index.cshtml", usr);
+        }
+
         public void getUserInfo(User usr)
         {
             int r_Id = 0;
