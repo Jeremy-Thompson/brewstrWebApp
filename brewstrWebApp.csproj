@@ -186,6 +186,7 @@
     <Compile Include="Controllers\GoogleFormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RecipeListController.cs" />
     <Compile Include="Controllers\RegisterAccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -193,6 +194,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\RegistrationError.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\User_Login.cs" />
@@ -331,6 +333,7 @@
     <Content Include="Views\RegisterAccount\Index.cshtml" />
     <Content Include="Views\RegisterAccount\failedRegistration.cshtml" />
     <Content Include="Views\Shared\_userAuthenticated.cshtml" />
+    <Content Include="Views\RecipeList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
