@@ -1,14 +1,15 @@
 ﻿<style type="text/css">
     body {
         text-align: center;
+        @Styles.Render("~/Content/bootstrap/bootstrap.css")
     }
 </style>
 @{
     ViewBag.Title = "Login";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <body>
-    @Styles.Render("~/Content/Styles.css")
-    @Scripts.Render("~/bundles/modernizr")
     <div id="login">
         <h1><strong>Welcome.</strong> Please login.</h1>
 

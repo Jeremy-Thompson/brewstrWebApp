@@ -88,8 +88,6 @@ namespace brewstrWebApp.Controllers
                     r_phoneNumber = dataReader.GetString(2);
                     r_emailAddr = dataReader.GetString(3);
                     r_password = dataReader.GetString(4);
-                    r_moduleId = (dataReader.GetInt32(5) == null ? 0 : dataReader.GetInt32(5));
-                    r_moduleType = dataReader.GetString(6);
                 }
                 dataReader.Close();
                 command.Dispose();
