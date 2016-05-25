@@ -29,7 +29,7 @@ namespace brewstrWebApp.Models
         [StringLength(30)]
         public string _email_address { get; set; }
         public bool _valid = false;
-        private bool _isAdmin;
+        private int _permissionLevel;
             
         #region c'tor
         public User()
@@ -39,11 +39,11 @@ namespace brewstrWebApp.Models
             _phone_number = null;
             _email_address = null;
             _password = null;
-            _isAdmin = false;
+            _permissionLevel = 0;
         }
 
         public User( int id, string username, string phoneNumber, string emailAddress,
-            string password, bool isAdmin)
+            string password, int permissionLevel)
         {
             User_Login lg = new User_Login(emailAddress,password);
             if(ValidateLogin(lg))
@@ -55,7 +55,7 @@ namespace brewstrWebApp.Models
             _phone_number = phoneNumber;
             _email_address = emailAddress;
             _password = password;
-            _isAdmin = isAdmin;
+            _permissionLevel = permissionLevel;
         }
         #endregion
 
@@ -84,9 +84,9 @@ namespace brewstrWebApp.Models
         {
             return _password;
         }
-        public bool getIsAdmin()
+        public int getPermissionLevel()
         {
-            return _isAdmin;
+            return _permissionLevel;
         }
         #endregion
 
@@ -98,6 +98,11 @@ namespace brewstrWebApp.Models
         public Boolean startsWithJ()
         {
             return _name.Substring(0, 1).Equals("J");
+        
+        }
+        public void ViewProfile()
+        {
+
         }
         #endregion
 

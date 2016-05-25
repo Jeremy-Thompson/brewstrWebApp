@@ -22,12 +22,26 @@ namespace brewstrWebApp.Controllers
             int id = (int)TempData["id"];
             string phone_number = (string)TempData["phone_number"];
             string email_address = (string) TempData["email_address"];
-            bool isAdmin = username.Substring(0,1).Equals("j");
-            User usr = new User(id, username, phone_number, email_address, password, isAdmin);
+            int permissionLevel = 1;
+            User usr = new User(id, username, phone_number, email_address, password, permissionLevel);
             // This is used in the _viewStart to determine which layout to use
             HttpContext.Session["Logged On"] = "true";
+            StoreUserSessionState(usr);
             getUserInfo(usr);
             return View("~/Views/Home/Index.cshtml", usr);
+        }
+        public ActionResult ViewProfile()
+        {
+            String user_name = (String)Session["user_name"];
+            int user_id = (int)Session["user_id"];
+            String user_password = (String)Session["user_password"];
+            String user_phone_number = (String)Session["user_phone_number"];
+            String user_email_address = (String)Session["user_email_address"];
+            int user_permission_level = (int)Session["user_permission_level"];
+
+            User session_user = new User(user_id, user_name, user_phone_number, user_email_address, user_password, user_permission_level);
+
+            return View("../User/Index", session_user);
         }
 
         public ActionResult SignOut()
@@ -79,6 +93,15 @@ namespace brewstrWebApp.Controllers
                 Console.Write("Can not open connection ! ");
                 Console.Write(ex.Message);
             }
+        }
+        public void StoreUserSessionState(User usr)
+        {
+            Session["user_name"] = usr.getUsername();
+            Session["user_id"] = usr.getId();
+            Session["user_password"] = usr.getPassword();
+            Session["user_phone_number"] = usr.getPhoneNumber();
+            Session["user_email_address"] = usr.getEmailAddress();
+            Session["user_permission_level"] = usr.getPermissionLevel();
         }
     }
 }

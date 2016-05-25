@@ -190,6 +190,7 @@
     <Compile Include="Controllers\RegisterAccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\LoadUserLayoutAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -334,6 +335,10 @@
     <Content Include="Views\RegisterAccount\failedRegistration.cshtml" />
     <Content Include="Views\Shared\_userAuthenticated.cshtml" />
     <Content Include="Views\RecipeList\Index.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\RegisterAccount\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
