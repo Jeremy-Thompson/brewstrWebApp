@@ -32,22 +32,29 @@ namespace brewstrWebApp.Controllers
         }
         public ActionResult ViewProfile()
         {
-            String user_name = (String)Session["user_name"];
-            int user_id = (int)Session["user_id"];
-            String user_password = (String)Session["user_password"];
-            String user_phone_number = (String)Session["user_phone_number"];
-            String user_email_address = (String)Session["user_email_address"];
-            int user_permission_level = (int)Session["user_permission_level"];
+            try
+            {
+                String user_name = (String)Session["user_name"];
+                int user_id = (int)Session["user_id"];
+                String user_password = (String)Session["user_password"];
+                String user_phone_number = (String)Session["user_phone_number"];
+                String user_email_address = (String)Session["user_email_address"];
+                int user_permission_level = (int)Session["user_permission_level"];
 
-            User session_user = new User(user_id, user_name, user_phone_number, user_email_address, user_password, user_permission_level);
+                User session_user = new User(user_id, user_name, user_phone_number, user_email_address, user_password, user_permission_level);
 
-            return View("../User/Index", session_user);
+                return View("../User/Index", session_user);
+            }catch( Exception ex)
+            {
+                return View("~/Views/Login/failedLogin.cshtml");
+            }
         }
 
         public ActionResult SignOut()
         {
             User usr = new User();
             HttpContext.Session.Remove("Logged On");
+            RemoveUserSessionState();
             return View("~/Views/Home/Index.cshtml", usr);
         }
 
@@ -102,6 +109,15 @@ namespace brewstrWebApp.Controllers
             Session["user_phone_number"] = usr.getPhoneNumber();
             Session["user_email_address"] = usr.getEmailAddress();
             Session["user_permission_level"] = usr.getPermissionLevel();
+        }
+        public void RemoveUserSessionState()
+        {
+            Session.Remove("user_id");
+            Session.Remove("user_name");
+            Session.Remove("user_phone_number");
+            Session.Remove("user_email_address");
+            Session.Remove("user_password");
+            Session.Remove("user_permission_level");
         }
     }
 }
