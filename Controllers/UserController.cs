@@ -65,8 +65,7 @@ namespace brewstrWebApp.Controllers
             string r_emailAddr = null;
             string r_password = null;
             string r_phoneNumber = null;
-            int r_moduleId = 0;
-            string r_moduleType = null;
+
 
             string connectionString = null;
             SqlConnection connection;

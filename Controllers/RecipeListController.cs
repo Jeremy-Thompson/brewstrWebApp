@@ -15,6 +15,12 @@ namespace brewstrWebApp.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Search(string search_str)
+        {
+            String str = search_str;
+            return View();
+        }
 
     }
 }
