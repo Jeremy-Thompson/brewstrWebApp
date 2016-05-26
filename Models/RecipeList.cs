@@ -7,5 +7,6 @@ namespace brewstrWebApp.Models
 {
     public class RecipeList
     {
+        public List<Recipe> Recipe_List;
     }
 }
