@@ -1,11 +1,21 @@
 ﻿@{
-    var sessionUser = System.Web.HttpContext.Current.Session.Keys.Count;
-    if (sessionUser > 0) 
-    { 
-        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    // Store session so that it dows not have to be accessed more than once
+    var session = Session;
+    
+    // If there are no user parameters, then open default Layout
+    if(session.Count == 0) 
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";                
     }
     else
     {
-        Layout = "~/Views/Shared/_Layout.cshtml";        
-     }
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+        // TODO: open different layouts based on access level
+        // Currently there is only one "User Layout"
+        /****************************************        
+        var accessLevel = session.Keys[0];
+        var sessionUserInt = accessLevel.AsInt();
+        if (sessionUserInt > 0) {}
+        ****************************************/
+    }
 }
