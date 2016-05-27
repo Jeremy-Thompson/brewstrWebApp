@@ -29,6 +29,10 @@ namespace brewstrWebApp
             bundles.Add(new StyleBundle("~/Content/bootstrapcss").Include(
                         "~/Content/bootstrap.min.css",
                         "~/Content/bootstrap-responsive.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            "~/Scripts/jquery.unobtrusive*",
+            "~/Scripts/jquery.validate*"));
         }
     }
 }

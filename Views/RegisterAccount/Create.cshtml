@@ -6,7 +6,8 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("User_Register", "RegisterAccount"))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -54,10 +55,11 @@
             <div>
                 @Html.EditorFor(model => model._id)
                 @Html.ValidationMessageFor(model => model._id)
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
-</fieldset>
+            </div>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
     </div>
 }
 
