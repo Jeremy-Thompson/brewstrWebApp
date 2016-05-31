@@ -24,12 +24,16 @@ namespace brewstrWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult User_Register(string name, string username, string password, string email, string phone)
+        public ActionResult User_Register(User user)
         {
-            string usernameTrim = username.Trim();
-            string passwordTrim = password.Trim();
-            string emailTrim = email.Trim();
-            string phoneTrim = phone.Trim();
+            User _user = user;
+            return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
+
+            /*
+            string usernameTrim = user.getUsername().Trim();
+            string passwordTrim = user.getPassword().Trim();
+            string emailTrim = user.getEmailAddress().Trim();
+            string phoneTrim = user.getPhoneNumber().Trim();
             int errorMsg = InputValidation(usernameTrim, passwordTrim, emailTrim, phoneTrim);
             bool insertAccount = InsertAccount(name, usernameTrim, passwordTrim, emailTrim, phoneTrim);
 
@@ -42,6 +46,7 @@ namespace brewstrWebApp.Controllers
                 RegistrationError regErr = new RegistrationError(errorMsg, usernameExists);
                 return View("~/Views/RegisterAccount/failedRegistration.cshtml", regErr);
             }
+            */
         }
 
         public bool InsertAccount(string name, string username, string password, string email, string phone)

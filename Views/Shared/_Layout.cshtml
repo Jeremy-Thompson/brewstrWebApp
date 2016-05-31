@@ -64,26 +64,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown pull-right" id="user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                        <ul id="login-dp" class="dropdown-menu dropdown-menu-login">
-                            <li>
-                                <div id="login">
-                                    <h1><strong>Welcome Derek...Prick.</strong></h1>
-                                </div> <!-- end login -->
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown pull-right" id="super-user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                        <ul id="login-dp" class="dropdown-menu dropdown-menu-login">
-                            <li>
-                                <div id="login">
-                                    <h1><strong>UBER USER.</strong></h1>
-                                </div> <!-- end login -->
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -116,20 +96,9 @@
                     <h4 class="modal-title">Register Account</h4>
                 </div>
                 <div class="modal-body">
-                    <div id="register">
-                        <form action="../RegisterAccount/User_Register" method="post">
-                            <fieldset>
-                                <p><input type="text" name="name" required value="Name" onblur="if(this.value=='')this.value='Name'" onfocus="if(this.value=='Name')this.value='' "></p>
-                                <p><input type="text" name="username" required value="Username" onblur="if(this.value=='')this.value='Username'" onfocus="if(this.value=='Username')this.value='' "></p>
-                                <p><input type="password" name="password" required value="Password" onblur="if(this.value=='')this.value='Password'" onfocus="if(this.value=='Password')this.value='' "></p>
-                                <p><input type="text" name="email" required value="Email Address" onblur="if(this.value=='')this.value='Email Address'" onfocus="if(this.value=='Email Address')this.value='' "></p>
-                                <p><input type="text" name="phone" required value="Phone Number" onblur="if(this.value=='')this.value='Phone Number'" onfocus="if(this.value=='Phone Number')this.value='' "></p>
-                                <p><input type="submit" value="Register" /></p>
-                                <script language="javascript">
-                                </script>
-                            </fieldset>
-                        </form>
-                    </div> <!-- end login -->
+                        <div id="register">
+                            @Html.Partial("_RegisterModalPartial", Model)
+                        </div> <!-- end login -->
                 </div>
             </div>
         </div>
