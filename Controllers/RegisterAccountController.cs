@@ -26,27 +26,8 @@ namespace brewstrWebApp.Controllers
         [HttpPost]
         public ActionResult User_Register(User user)
         {
-            User _user = user;
-            return View("~/Views/Home/Index#myModal.cshtml");
-
-            /*
-            string usernameTrim = user.getUsername().Trim();
-            string passwordTrim = user.getPassword().Trim();
-            string emailTrim = user.getEmailAddress().Trim();
-            string phoneTrim = user.getPhoneNumber().Trim();
-            int errorMsg = InputValidation(usernameTrim, passwordTrim, emailTrim, phoneTrim);
-            bool insertAccount = InsertAccount(name, usernameTrim, passwordTrim, emailTrim, phoneTrim);
-
-            if ((errorMsg < 1) && insertAccount)
-            {
-                return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
-            }
-            else
-            {
-                RegistrationError regErr = new RegistrationError(errorMsg, usernameExists);
-                return View("~/Views/RegisterAccount/failedRegistration.cshtml", regErr);
-            }
-            */
+            TempData["user"] = user; 
+            return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
         }
 
         public bool InsertAccount(string name, string username, string password, string email, string phone)
@@ -127,8 +108,13 @@ namespace brewstrWebApp.Controllers
             return true;
         }
 
+        /*
+         * Checks that the username entered in the username field is unique
+         * The checks are triggered everytime a new character is entered into the field
+         */
         public JsonResult uniqueUsername()
         {
+            // Retrieves the esername entry from the field
             string username = Request.QueryString.Get(0);
 
             string connectionString = null;
@@ -155,10 +141,9 @@ namespace brewstrWebApp.Controllers
             }
             catch (Exception ex)
             {
-                return Json("error in accessing DB", JsonRequestBehavior.AllowGet);
                 Console.Write("Can not open connection ! ");
                 Console.Write(ex.Message);
-
+                return Json("error in accessing DB", JsonRequestBehavior.AllowGet);
             }
         }
     }

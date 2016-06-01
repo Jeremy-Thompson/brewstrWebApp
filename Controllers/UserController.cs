@@ -17,19 +17,30 @@ namespace brewstrWebApp.Controllers
         [LoadUserLayout]
         public ActionResult Index()
         {
-            string username = (string) TempData["username"];
-            string password = (string) TempData["password"];
-            int id = (int)TempData["id"];
-            string phone_number = (string)TempData["phone_number"];
-            string email_address = (string) TempData["email_address"];
-            int permissionLevel = 1;
-            User usr = new User(id, username, phone_number, email_address, password, permissionLevel);
+            // The User_register action in registerAccount controller takes a User model from the form. This logic is to 
+            // acoount for the user model tempdataand the User model parameters tempdata that the login form passes.
+            User usr;
+            if(TempData["user"] != null)
+            {
+                usr = (User)TempData["user"];
+            }
+            else
+            {
+                string username = (string) TempData["username"];
+                string password = (string) TempData["password"];
+                int id = (int)TempData["id"];
+                string phone_number = (string)TempData["phone_number"];
+                string email_address = (string) TempData["email_address"];
+                int permissionLevel = 1;
+                usr = new User(id, username, phone_number, email_address, password, permissionLevel);
+            }
             // This is used in the _viewStart to determine which layout to use
             HttpContext.Session["Logged On"] = "true";
             StoreUserSessionState(usr);
             getUserInfo(usr);
             return View("~/Views/Home/Index.cshtml", usr);
         }
+
         public ActionResult ViewProfile()
         {
             try
