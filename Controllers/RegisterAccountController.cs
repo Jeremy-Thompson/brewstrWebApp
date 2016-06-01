@@ -27,7 +27,7 @@ namespace brewstrWebApp.Controllers
         public ActionResult User_Register(User user)
         {
             User _user = user;
-            return Redirect("../User/Index");//View("~/Views/User/Index.cshtml");  
+            return View("~/Views/Home/Index#myModal.cshtml");
 
             /*
             string usernameTrim = user.getUsername().Trim();
@@ -52,7 +52,8 @@ namespace brewstrWebApp.Controllers
         public bool InsertAccount(string name, string username, string password, string email, string phone)
         {
             // The register fields must contain something, otherwise no need to open database
-            if (password == null || username == null || email == null || phone == null){
+            if (password == null || username == null || email == null || phone == null)
+            {
                 // TODO: set the error message to please enter required fields
                 return false;
             }
@@ -75,7 +76,7 @@ namespace brewstrWebApp.Controllers
                 connection.Open();
                 command = new SqlCommand(sql, connection);
                 dataReader = command.ExecuteReader();
-                
+
                 //Check for a matching account in the database
                 while (dataReader.Read())
                 {
@@ -90,7 +91,7 @@ namespace brewstrWebApp.Controllers
                 command.Dispose();
                 connection.Close();
                 // if the username already exists
-                if((r_username != null))
+                if ((r_username != null))
                 {
                     usernameExists = true;
                     return false;
@@ -126,109 +127,39 @@ namespace brewstrWebApp.Controllers
             return true;
         }
 
-        int InputValidation(string username, string password, string email, string phone)
-            {
-            /*
-             * Message Flag Map
-             * Bit 1: username is too long
-             * Bit 2: password is too long
-             * Bit 3: password is too short
-             * Bit 4: phone number is too long
-             * Bit 5: email is too long
-             * Bit 6: email is invalid
-             */
-            int messageFlag = 0;
-            // The register fields must contain something, otherwise no need to open database
-            if (username.Length > 100)
-            {
-                messageFlag += 1;
-            }
-            if (password.Length > 30)
-            {
-                messageFlag += 2;
-            }
-            if (password.Length < 5)
-            {
-                messageFlag += 4;
-            }
-            if (phone.Length > 16)
-            {
-                messageFlag += 8;
-            }
-            if (email.Length > 30)
-            {
-                messageFlag += 16;
-            }
-            if (!IsValidEmail(email))
-            {
-                messageFlag += 32;
-            }
-            return messageFlag;
-        }
-
-        public bool IsValidEmail(string strIn)
+        public JsonResult uniqueUsername()
         {
-            invalid = false;
-            if (String.IsNullOrEmpty(strIn))
-                return false;
+            string username = Request.QueryString.Get(0);
 
-            // Use IdnMapping class to convert Unicode domain names.
+            string connectionString = null;
+            SqlConnection connection;
+            SqlCommand command;
+            string sql = null;
+            SqlDataReader dataReader;
+            connectionString = "Data Source=(localdb)\\ProjectsV12;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False; Initial Catalog=Brewstr; User ID =admin;Password =admin";
+            sql = "Select username from CFG_USER where username = '" + username + "'";
             try
             {
-                strIn = Regex.Replace(strIn, @"(@)(.+)$", this.DomainMapper,
-                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                if(dataReader.HasRows)
+                {
+                    return Json(username + " is not available", JsonRequestBehavior.AllowGet);;
+                }
+                else
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);;
+                }
             }
-            catch (RegexMatchTimeoutException)
+            catch (Exception ex)
             {
-                return false;
-            }
+                return Json("error in accessing DB", JsonRequestBehavior.AllowGet);
+                Console.Write("Can not open connection ! ");
+                Console.Write(ex.Message);
 
-            if (invalid)
-                return false;
-
-            // Return true if strIn is in valid e-mail format.
-            try
-            {
-                return Regex.IsMatch(strIn,
-                      @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                      @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
-                      RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
             }
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
-        }
-        private string DomainMapper(Match match)
-        {
-            // IdnMapping class with default property values.
-            IdnMapping idn = new IdnMapping();
-
-            string domainName = match.Groups[2].Value;
-            try
-            {
-                domainName = idn.GetAscii(domainName);
-            }
-            catch (ArgumentException)
-            {
-                invalid = true;
-            }
-            return match.Groups[1].Value + domainName;
-        }
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Create(Models.User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            return Create();
         }
     }
 }

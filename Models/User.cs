@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace brewstrWebApp.Models
 {
@@ -15,6 +16,7 @@ namespace brewstrWebApp.Models
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Please Enter a Username")]
         [StringLength(100)]
+        [Remote("uniqueUsername","RegisterAccount")]
         public string _username { get; set; }
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Please Enter a Password")]
