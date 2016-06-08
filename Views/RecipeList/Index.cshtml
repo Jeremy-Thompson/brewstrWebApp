@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "recipeList_Home";
+    var imageUrlList = (string[]) TempData["imageSource"];
+    var beerTitleList = (string[]) TempData["beerName"];
 }
-@Model 
+@model brewstrWebApp.Models.Recipe
 
     @Styles.Render("~/Content/Recipe.css")
     @Styles.Render("~/Content/bootstrap/Bootstrap.css")
@@ -39,46 +41,14 @@
 </nav>
 <div id="marketplace-wrapper">
     <div id="marketplace-columns">
-        <div class="recipe">
-            <img src="http://cssdeck.com/uploads/media/items/2/2v3VhAp.png" />
-            <p>
-                Blonde Pale Ale
-            </p>
-        </div>
-
-        <div class="recipe">
-            <img src="http://cssdeck.com/uploads/media/items/1/1swi3Qy.png" />
-            <p>
-                Oldknow's Nutcracker
-            </p>
-        </div>
-
-        <div class="recipe">
-            <img src="http://cssdeck.com/uploads/media/items/6/6f3nXse.png" />
-            <p>
-                Epic IPA
-            </p>
-        </div>
-
-        <div class="recipe">
-            <img src="http://cssdeck.com/uploads/media/items/8/8kEc1hS.png" />
-            <p>
-                Island Lager
-            </p>
-        </div>
-
-        <div class="recipe">
-            <img src="http://cssdeck.com/uploads/media/items/1/1swi3Qy.png" />
-            <p>
-                Nutmeg Stout
-            </p>
-        </div>
-
-        <div class="recipe">
-            <img src="http://cssdeck.com/uploads/media/items/6/6f3nXse.png" />
-            <p>
-                Some other kind of beer...
-            </p>
-        </div>
+        @for (var i = 0; i < imageUrlList.Length; i++)
+        {
+            <div class="recipe">
+                <img src=@imageUrlList[i] />
+                <p>
+                    @beerTitleList[i]
+                </p>
+            </div>
+        }
     </div>
 </div>
