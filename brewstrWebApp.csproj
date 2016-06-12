@@ -186,6 +186,7 @@
     <Compile Include="Controllers\GoogleFormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\RecipeListController.cs" />
     <Compile Include="Controllers\RegisterAccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />

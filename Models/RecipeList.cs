@@ -10,14 +10,17 @@ namespace brewstrWebApp.Models
         public List<Recipe> Recipe_List;
         public RecipeList()
         {
+            Recipe_List = new List<Recipe>();
             populateListWithBS();
         }
 
         public void populateListWithBS()
         {
+            Recipe rp;
             for (int i = 0; i < 10; i++)
             {
-                Recipe_List.Add(new Recipe(String.Format("Test Name:",i),String.Format("Test Author:",i), DateTime.Now,i,i,i,i,i,i,i,i,i,i));
+                rp = new Recipe(String.Format("Test Name:",i),String.Format("Test Author:",i), DateTime.Now,i,i,i,i,i,i,i,i,i,i);
+                Recipe_List.Add(rp);
             }
         }
         public Recipe getRecipeByIndex(int index)

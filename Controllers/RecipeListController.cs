@@ -31,21 +31,15 @@ namespace brewstrWebApp.Controllers
                 "Nutmeg Stout", 
                 "Island Lager", 
                 "Ray's Raspberry" };
+            RecipeList recipe_list = new RecipeList();
 
-            return View();
+            return View(recipe_list);
         }
         [HttpPost]
         public ActionResult Search(string search_str)
         {
             brewstrWebApp.Models.RecipeList Recipe_List = Search_Recipe_By_Name(search_str);
             return View();
-        }
-        [HttpGet]
-        public ActionResult OpenRecipe(Recipe recipe)
-        {
-            //Models.Recipe model = new Models.Recipe();
-            //return Json(model, JsonRequestBehavior.AllowGet);
-            return View("~/Views/Recipe/Index.cshtml", recipe);
         }
         public brewstrWebApp.Models.RecipeList Search_Recipe_By_Name(String name)
         {

@@ -101,3 +101,4 @@ C:\Users\jeremy\Source\Repos\brewstrWebApp\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\Users\jeremy\Source\Repos\brewstrWebApp\bin\WebMatrix.WebData.xml
 C:\Users\jeremy\Source\Repos\brewstrWebApp\obj\Debug\brewstrWebApp.dll
 C:\Users\jeremy\Source\Repos\brewstrWebApp\obj\Debug\brewstrWebApp.pdb
+C:\Users\jeremy\Source\Repos\brewstrWebApp\obj\Debug\brewstrWebApp.csprojResolveAssemblyReference.cache
