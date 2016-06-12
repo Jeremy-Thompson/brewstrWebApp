@@ -12,6 +12,7 @@ namespace brewstrWebApp.Models
         private String _author;
         private DateTime _dateCreated;
         private int _category;
+        private int _id;
         //Brew specific info
         public int _mashTemp;
         public int _mashTime;
@@ -57,6 +58,26 @@ namespace brewstrWebApp.Models
             _hopsTime3 = hopstime3;
             _hopsTime4 = hopstime4;
             _brewCount = brewcount;
+        }
+        public string name
+        {
+            get { return _name; }
+        }
+        public string author
+        {
+            get { return _author; }
+        }
+        public DateTime dateCreated
+        {
+            get { return _dateCreated; }
+        }
+        public int category
+        {
+            get { return _category;  }
+        }
+        public int id
+        {
+            get { return _id;  }
         }
     }
 }
