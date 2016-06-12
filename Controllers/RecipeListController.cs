@@ -45,7 +45,7 @@ namespace brewstrWebApp.Controllers
         {
             //Models.Recipe model = new Models.Recipe();
             //return Json(model, JsonRequestBehavior.AllowGet);
-            return View("~/Views/RecipeList/Recipe_Page.cshtml", recipe);
+            return View("~/Views/Recipe/Index.cshtml", recipe);
         }
         public brewstrWebApp.Models.RecipeList Search_Recipe_By_Name(String name)
         {
