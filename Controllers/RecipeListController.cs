@@ -31,9 +31,15 @@ namespace brewstrWebApp.Controllers
                 "Nutmeg Stout", 
                 "Island Lager", 
                 "Ray's Raspberry" };
-            RecipeList recipe_list = new RecipeList();
-
-            return View(recipe_list);
+            List<Recipe> recipe_list = new List<Recipe>();
+            Recipe rp;
+            for (int i = 0; i < 5; i++)
+            {
+                rp = new Recipe(String.Format("Test Name:", i), String.Format("Test Author:", i), DateTime.Now, i, i, i, i, i, i, i, i, i, i);
+                recipe_list.Add(rp);
+            }
+            IEnumerable<Recipe> re = recipe_list;
+            return View(re);
         }
         [HttpPost]
         public ActionResult Search(string search_str)

@@ -3,7 +3,7 @@
     var imageUrlList = (string[]) TempData["imageSource"];
     var beerTitleList = (string[]) TempData["beerName"];
 }
-@model brewstrWebApp.Models.RecipeList
+@model IEnumerable<brewstrWebApp.Models.Recipe>
 
     @Styles.Render("~/Content/Recipe.css")
     @Styles.Render("~/Content/bootstrap/Bootstrap.css")
@@ -41,12 +41,12 @@
 </nav>
 <div id="marketplace-wrapper">
     <div id="marketplace-columns">
-        @for (var i = 0; i < @Model.getRecipeListSize(); i++)
+        @foreach (var i in Model)
         {
-            <div class="recipe" onclick="openRecipe(@Model.getRecipeByIndex(i));">
-                <img src=@imageUrlList[i] />
+            <div class="recipe" onclick="openRecipe(i);">
+                <img src=@imageUrlList[0] />
                 <p>
-                    @beerTitleList[i]
+                    @beerTitleList[0]
                 </p>
             </div>
         }
@@ -54,6 +54,6 @@
 </div>
 <script type="text/javascript">
     function openRecipe(model) {
-        Html.Action("OpenRecipe", "RecipeController", model);
+        Html.Action("OpenRecipe", "Recipe", model);
     }
 </script>
