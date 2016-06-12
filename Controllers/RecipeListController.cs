@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using brewstrWebApp.Models;
 
 namespace brewstrWebApp.Controllers
 {
@@ -40,11 +41,11 @@ namespace brewstrWebApp.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult OpenRecipe(string id)
+        public ActionResult OpenRecipe(Recipe recipe)
         {
             //Models.Recipe model = new Models.Recipe();
             //return Json(model, JsonRequestBehavior.AllowGet);
-            return View();
+            return View("~/Views/RecipeList/Recipe_Page.cshtml", recipe);
         }
         public brewstrWebApp.Models.RecipeList Search_Recipe_By_Name(String name)
         {
