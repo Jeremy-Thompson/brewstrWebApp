@@ -12,6 +12,7 @@ namespace brewstrWebApp.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            //return View("~/Views/User.UserLanding.cshtml");
             return View("Index");
         }
         [HttpPost]
@@ -19,6 +20,7 @@ namespace brewstrWebApp.Controllers
         {
             if(AuthenticateAccount(Username, Password))
             {
+                //return View("~/Views/User/UserLanding.cshtml");
                 return Redirect("../User/Index"); 
             }
             else
