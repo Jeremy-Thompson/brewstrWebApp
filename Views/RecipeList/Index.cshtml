@@ -3,7 +3,7 @@
     var imageUrlList = (string[]) TempData["imageSource"];
     var beerTitleList = (string[]) TempData["beerName"];
 }
-@model brewstrWebApp.Models.RecipeList
+@model brewstrWebApp.Models.Recipe
 
     @Styles.Render("~/Content/Recipe.css")
     @Styles.Render("~/Content/bootstrap/Bootstrap.css")
@@ -55,7 +55,7 @@
 <script type="text/javascript">
     function openRecipe(id) {
         $.ajax({
-            url: '@Url.Action("openRecipe", "RecipeList")',
+            url: 'urlToController',
             data: { id: id }
         }).done(function () {
             alert('Added');
