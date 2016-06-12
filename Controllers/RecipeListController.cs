@@ -39,6 +39,13 @@ namespace brewstrWebApp.Controllers
             brewstrWebApp.Models.RecipeList Recipe_List = Search_Recipe_By_Name(search_str);
             return View();
         }
+        [HttpGet]
+        public ActionResult OpenRecipe(string id)
+        {
+            //Models.Recipe model = new Models.Recipe();
+            //return Json(model, JsonRequestBehavior.AllowGet);
+            return View();
+        }
         public brewstrWebApp.Models.RecipeList Search_Recipe_By_Name(String name)
         {
             return new brewstrWebApp.Models.RecipeList();
