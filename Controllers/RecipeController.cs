@@ -12,14 +12,10 @@ namespace brewstrWebApp.Controllers
         //
         // GET: /Recipe/
 
-        public ActionResult Index()
+        public ActionResult Index(Recipe recipe)
         {
+            TempData["MyRecipe"] = recipe;
             return View();
-        }
-        [HttpGet]
-        public ActionResult OpenRecipe(Recipe recipe)
-        {
-            return View("~/Views/Recipe/Index.cshtml", recipe);
         }
 
     }

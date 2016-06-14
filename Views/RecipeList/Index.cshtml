@@ -45,7 +45,7 @@
         @foreach (var i in Model)
         {
             // Url.Action generates the url for 
-            <a href="@Url.Action("OpenRecipe", "Recipe", i)">
+            <a href="@Url.Action("Index", "Recipe", i)">
                 <div class="recipe">
                     <img src=@imageUrlList[0] />
                     <div class="recipe-link">

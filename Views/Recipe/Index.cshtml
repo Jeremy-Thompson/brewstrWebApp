@@ -1,10 +1,14 @@
-﻿@{
+﻿@using brewstrWebApp.Models
+
+@{
     ViewBag.Title = "Index";
 }
-@model brewstrWebApp.Models.Recipe
+@{
+    var recipe = (Recipe)TempData["MyRecipe"];
+}
 
-<h2>@Model.name</h2>
-<h2>@Model.author</h2>
-<h2>@Model.category</h2>
-<h2>@Model.dateCreated</h2>
+<h2>@recipe.name</h2>
+<h2>@recipe.author</h2>
+<h2>@recipe.category</h2>
+<h2>@recipe.dateCreated</h2>
 
