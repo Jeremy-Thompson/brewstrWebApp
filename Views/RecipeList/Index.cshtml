@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/Recipe.css")
     @Styles.Render("~/Content/bootstrap/Bootstrap.css")
     @Scripts.Render("~/bundles/sly")
+    @Styles.Render("~/Content/Styles.css")
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -43,17 +44,17 @@
     <div id="marketplace-columns">
         @foreach (var i in Model)
         {
-            <div class="recipe" onclick="openRecipe(i);">
-                <img src=@imageUrlList[0] />
-                <p>
-                    @beerTitleList[0]
-                </p>
-            </div>
+            // Url.Action generates the url for 
+            <a href="@Url.Action("OpenRecipe", "Recipe", i)">
+                <div class="recipe">
+                    <img src=@imageUrlList[0] />
+                    <div class="recipe-link">
+                    </div>
+                    <p>
+                        @beerTitleList[0]
+                    </p>
+                </div>
+            </a>
         }
     </div>
 </div>
-<script type="text/javascript">
-    function openRecipe(model) {
-        Html.Action("OpenRecipe", "Recipe", model);
-    }
-</script>

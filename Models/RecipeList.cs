@@ -17,7 +17,7 @@ namespace brewstrWebApp.Models
         public void populateListWithBS()
         {
             Recipe rp;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 rp = new Recipe(String.Format("Test Name:",i),String.Format("Test Author:",i), DateTime.Now,i,i,i,i,i,i,i,i,i,i);
                 Recipe_List.Add(rp);
