@@ -17,19 +17,19 @@ namespace brewstrWebApp.Controllers
         public ActionResult Index()
         {
             TempData["imageSource"] = new string[] 
-              { "http://cssdeck.com/uploads/media/items/2/2v3VhAp.png", 
-                "http://cssdeck.com/uploads/media/items/1/1swi3Qy.png", 
-                "http://cssdeck.com/uploads/media/items/6/6f3nXse.png", 
-                "http://cssdeck.com/uploads/media/items/8/8kEc1hS.png",
-                "http://cssdeck.com/uploads/media/items/1/1swi3Qy.png", 
+              { "/Content/images/sunriseIPA.png", 
+                "/Content/images/jimsPaleAle.png", 
+                "/Content/images/nutmegStout.png", 
+                "/Content/images/bruxellesBlonde.png",
+                "/Content/images/sunriseIPA.png", 
                 "http://cssdeck.com/uploads/media/items/6/6f3nXse.png" };
 
             TempData["beerName"] = new string[] 
-              { "Oldknow's Nutcracker", 
-                "epic IPA", 
-                "Blonde Pale Ale", 
-                "Nutmeg Stout", 
-                "Island Lager", 
+              { "Start your morning dry but with a great body", 
+                "Average Ale for Average guys", 
+                "Put yourself in the Chistmas spirit with this festive stout", 
+                "Lovely sweet blonde (We should all be so lucky)", 
+                "Start your morning dry but with a great body.... Again", 
                 "Ray's Raspberry" };
             List<Recipe> recipe_list = new List<Recipe>();
             Recipe rp;

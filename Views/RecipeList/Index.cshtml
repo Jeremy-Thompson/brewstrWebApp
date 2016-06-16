@@ -2,6 +2,7 @@
     ViewBag.Title = "recipeList_Home";
     var imageUrlList = (string[]) TempData["imageSource"];
     var beerTitleList = (string[]) TempData["beerName"];
+    var iterator = 0;
 }
 @model IEnumerable<brewstrWebApp.Models.Recipe>
 
@@ -47,14 +48,14 @@
             // Url.Action generates the url for 
             <a href="@Url.Action("OpenRecipe", "Recipe", i)">
                 <div class="recipe">
-                    <img src=@imageUrlList[0] />
-                    <div class="recipe-link">
-                    </div>
+                    <img src=@imageUrlList[iterator] />
+                    <p>Description</p>
                     <p>
-                        @beerTitleList[0]
+                        @beerTitleList[iterator]
                     </p>
                 </div>
             </a>
+            iterator++;
         }
     </div>
 </div>
