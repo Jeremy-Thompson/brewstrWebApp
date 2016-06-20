@@ -13,6 +13,15 @@ namespace brewstrWebApp.Models
         private DateTime _dateCreated;
         private int _category;
         private int _id;
+        //Marketplace Information
+        public int _brewCount;
+        public int _cost;
+        public int _brewTime;
+        public int _brewVolume;
+        public String _grainsType;
+        public float _grainsWeighLbs;
+        public float _hopsWeightoz;
+
         //Brew specific info
         public int _mashTemp;
         public int _mashTime;
@@ -22,7 +31,6 @@ namespace brewstrWebApp.Models
         public int _hopsTime2;
         public int _hopsTime3;
         public int _hopsTime4;
-        private int _brewCount;
 
         public Recipe()
         {
